@@ -114,3 +114,88 @@ function gameObject() {
         },
     };
 }
+
+const GameObj = gameObject();
+function numPointsScored(playerName) {
+    const games = Object.assign({}, GameObj.home.players, GameObj.away.players); 
+    return games[playerName].points;
+}; 
+    
+  
+    function shoeSize(playerName) {
+        const games = Object.assign({}, GameObj.home.players, GameObj.away.players); 
+        return games[playerName].shoe;
+    }; 
+
+    function teamColors(teamName) {
+        const teams = [GameObj.home, GameObj.away];
+        for (const team of teams) {
+            if (team.teamName === teamName) {
+                return team.colors;
+            }
+        }
+       
+    };
+
+    function teamNames() {
+        const teams = [GameObj.home, GameObj.away];
+        return teams.map(team => team.teamName);
+    };
+
+    function playerNumbers(teamName) {
+        const teams = [GameObj.home, GameObj.away];
+        const jerseyNumbers = [];
+        for (const team of teams) {
+            if (team.teamName === teamName) {
+                const players = team.players;
+                for (const player in players) {
+                    jerseyNumbers.push(players[player].number);
+                }
+                return jerseyNumbers;
+            }
+        }
+                return Object.values(team.players).map(player => player.number);
+            }
+    function playerStats(playerName) {
+        const teams = [GameObj.home, GameObj.away];
+        for (const team of teams) {
+            const players = team.players;
+            if (players[playerName]) {
+                return players[playerName];
+            }
+        }
+        return {};
+    }
+
+    function bigShoeRebounds() {
+        const teams = [GameObj.home, GameObj.away];
+        let biggestShoeSize = 0;
+        let rebounds = 0;
+
+        for (const team of teams) {
+            const players = team.players;
+            for (const player in players) {
+                const stats = players[player];
+                if (stats.shoe > biggestShoeSize) {
+                    biggestShoeSize = stats.shoe;
+                    rebounds = stats.rebounds;
+                }
+
+            }
+        }
+        return rebounds;
+    }
+    
+    console.log(numPointsScored("Ben Gordon")); 
+    console.log(shoeSize("Brook Lopez")); 
+    console.log(teamColors("Charlotte Hornets")); 
+    console.log(teamNames()); 
+    console.log(playerNumbers("Brooklyn Nets")); 
+    console.log(playerStats("Mason Plumlee")); 
+    console.log(bigShoeRebounds());
+    
+
+
+
+
+        
